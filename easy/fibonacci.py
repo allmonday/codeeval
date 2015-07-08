@@ -13,7 +13,7 @@ def memo(fn):
             return cache[n]
     return wrap
 
-@memo
+# @memo
 def fibonacci(n):
     if n == 0:
         return 0
@@ -21,6 +21,8 @@ def fibonacci(n):
         return 1
     else:
         return fibonacci(n-1) + fibonacci(n-2)
+
+fibonacci = memo(fibonacci)
 
 for arg in args:
     print fibonacci(int(arg))

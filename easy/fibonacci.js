@@ -7,6 +7,19 @@ function fibonacci(n) {
 	}
 }
 
+function memo(fn) {
+	var cache = {};
+	return function (n) {
+		if( n in cache ) {
+			return cache[n];
+		} else {
+			cache[n] = fn(n);
+			return cache[n];
+		}
+	}
+}
+
+// mixed
 var memoFibo = (function () {
 	var cache = {};
 	function f(n) {
@@ -28,6 +41,12 @@ var memoFibo = (function () {
 	return f;
 })()
 
-console.log(fibonacci(5))
+console.log(fibonacci(5));
+
+// little decorator
+fibonacci = memo(fibonacci);
+console.log(fibonacci(150));
+
+// wrapper
 console.log(memoFibo(145))
 
